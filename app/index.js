@@ -1,45 +1,54 @@
 import { useState } from "react";
-import {ScrollView,SafeAreaView } from "react-native";
+import {ScrollView,SafeAreaView,StyleSheet,View} from "react-native";
 import {Stack,useRouter} from 'expo-router';
 import { COLORS,icons,images,SIZES } from "../constants";
+import {Nearbyjobs,Popularjobs,ScreenHeaderBtn,Welcome} from '../components';
 
 
-export default function Page() {
+export default function home() {
+  const router=useRouter();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.main}> 
-        <Text style={styles.title}>Event GO{'\n'}</Text>
-        
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
+   <SafeAreaView style={{flex:1,backgroundColor:COLORS.lightWhite}}>
+    <Stack.Screen style={styles.tex}
+    options={{
+      headerStyle:{backgroundColor:COLORS.lightWhite},headerShadowVisible:false,
+    headerLeft:()=>(
+      <ScreenHeaderBtn iconurl={icons.menu} dimension="60%"/>
+    ),
+
+    headerRight:()=>(
+      <ScreenHeaderBtn iconurl={images.profile} dimension="100%"/>
+    ),
+    headerTitle:""
+    
+    }}
+    />
+
+
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View
+         style={{
+          flex:1,
+          padding:SIZES.medium
+        }}>
+          <Welcome/>
+          <Popularjobs/>
+          <Nearbyjobs/>
+          
+
       </View>
-    </View>
+
+    </ScrollView>
+    
+   </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  tex: {
     alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
-  },
-  title: {
-     color:"red",
-     textShadowColor:"black",
-     textShadowRadius:0.5,
-     opacity:1.5,
-
-    fontSize: 64,
-    fontWeight: "bold",
-    paddingBottom:30
-  },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
+    justifyContent:"center"
+   
+  }
 });
