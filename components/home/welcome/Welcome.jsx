@@ -12,11 +12,11 @@ import { useRouter } from 'expo-router'
 import styles from './welcome.style'
 import { icons, SIZES } from '../../../constants';
 
-const jobtypes=["Full-Time","Part-Time","Freelance","Internship"];
+const jobtypes = ["Full-Time", "Part-Time", "Freelance", "Internship"];
 
 const Welcome = () => {
   const router = useRouter();
-  const [activeJobsType,setactiveJobsType]=useState('Full-Time');
+  const [activeJobsType, setactiveJobsType] = useState('Full-Time');
 
   return (
     <View>
@@ -45,22 +45,22 @@ const Welcome = () => {
       </View>
 
       <View style={styles.tabsContainer}>
-        <FlatList 
-        data={jobtypes}
-        renderItem={({item})=>(
-          <TouchableOpacity style={styles.tab(activeJobsType,item)}
-          onPress={()=>{
-            setactiveJobsType(item);
-            router.push(`/search/${item}`)
-          }}
-          >
-            <Text style={styles.tabText(activeJobsType,item)}>{item}</Text>
-          </TouchableOpacity>
+        <FlatList
+          data={jobtypes}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.tab(activeJobsType, item)}
+              onPress={() => {
+                setactiveJobsType(item);
+                router.push(`/search/${item}`)
+              }}
+            >
+              <Text style={styles.tabText(activeJobsType, item)}>{item}</Text>
+            </TouchableOpacity>
 
-        )}
-        keyExtractor={item=>item}
-        contentContainerStyle={{columnGap:SIZES.small}}
-        horizontal
+          )}
+          keyExtractor={item => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
+          horizontal
         />
       </View>
 
